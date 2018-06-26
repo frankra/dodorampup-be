@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://java.sun.com/xml/ns/javaee"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+	id="WebApp_ID" version="3.0">
+	<display-name>bookings-jdbc</display-name>
+	<welcome-file-list>
+		<welcome-file>index.html</welcome-file>
+	</welcome-file-list>
+	<session-config>
+		<session-timeout>15</session-timeout>
+	</session-config>
+	
+	<resource-ref>
+		<res-ref-name>jdbc/DefaultDB</res-ref-name>
+		<res-type>javax.sql.DataSource</res-type>
+	</resource-ref>
+
+	<login-config>
+		<auth-method>BASIC</auth-method>
+	</login-config>
+
+	<security-role>
+		<description>All SAP HANA Cloud Platform users</description>
+		<role-name>Everyone</role-name>
+	</security-role>
+	<security-role>
+		<description>Admins</description>
+		<role-name>admin</role-name>
+	</security-role>
+
+	<security-constraint>
+		<web-resource-collection>
+			<web-resource-name>Protected Area</web-resource-name>
+			<url-pattern>/api/admin/*</url-pattern>
+		</web-resource-collection>
+		<auth-constraint>
+			<role-name>admin</role-name>
+		</auth-constraint>
+	</security-constraint>
+
+</web-app>

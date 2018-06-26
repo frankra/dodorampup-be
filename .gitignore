@@ -1,0 +1,6 @@
+target/
+.DS_Store
+build
+.idea/
+*.iml
+.vagrant
